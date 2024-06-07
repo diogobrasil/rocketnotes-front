@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { Routes } from './routes';
 import theme from './styles/theme';
 
-import { MyContext } from "./MyContext";
+import { AuthProvider } from "./hooks/auth";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -14,11 +14,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
       <GlobalStyles/>
       
-      <MyContext.Provider value = {{ name : "diogo"}}>
+        <AuthProvider>
 
-        <Routes />
+          <Routes />
 
-      </MyContext.Provider>
+        </AuthProvider>
 
     </ThemeProvider>
 

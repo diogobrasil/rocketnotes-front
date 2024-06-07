@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Input } from '../../components/input';
 import { Button } from '../../components/button';
 
-import { useState } from 'react';//Rook que de criação de estados.
+import { useState } from 'react';//Hook que de criação de estados.
 
 import { api } from "../../services/api";
 
