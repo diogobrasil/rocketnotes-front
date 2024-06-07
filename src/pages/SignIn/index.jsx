@@ -5,7 +5,13 @@ import { Link } from 'react-router-dom';
 import { Input } from '../../components/input';
 import { Button } from '../../components/button';
 
+import { MyContext } from "../../MyContext";
+import { useContext } from "react";
+
 export function SignIn () {
+
+  const data = useContext(MyContext);
+  
   return (
     <Container>
       <Form>
