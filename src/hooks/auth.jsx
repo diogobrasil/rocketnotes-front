@@ -33,6 +33,12 @@ function AuthProvider ( { children}) {
 
   }
 
+  function signOut () {
+    localStorage.removeItem("@rocketnotes : token");
+    localStorage.removeItem("@rocketnotes : user");
+    setData({});
+  }
+
   useEffect ( () => {
 
     const token = localStorage.getItem("@rocketnotes : token");
@@ -46,7 +52,12 @@ function AuthProvider ( { children}) {
   }, []);//Esse useEffect disapra sempre que a página é recarregada buscando os valores no localstorage e armazenando dentro do state data.
 
   return (
-    <AuthContext.Provider value={{ signIn, user : data.user }}>
+    <AuthContext.Provider value={
+      { signIn, 
+        signOut, 
+        user : data.user 
+      }}>
+        
       {children}
     </AuthContext.Provider>
   )
