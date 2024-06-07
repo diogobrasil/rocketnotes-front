@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios";//Permite que o frontend consuma o backend.
 
 export const api = axios.create(
   {
