@@ -4,6 +4,7 @@ import { Textarea } from '../../components/textarea';
 import { NoteItem } from '../../components/noteitem';
 import { Section } from '../../components/section';
 import { Button } from '../../components/button';
+import { ButtonText } from '../../components/buttonText';
 import { Header } from '../../components/header';
 import { Input } from '../../components/input';
 
@@ -57,6 +58,10 @@ export function New () {
       return alert("Há uma tag esperando ser adicionada. Click em adicionar ou deixe o campo vazio.");
     }
 
+    if (links.length === 0 || tags.length === 0) {
+      return alert("Por favor, adicione ao menos um link e uma tag.");
+    }
+
     await api.post("/notes", {
       title,
       description,
@@ -65,8 +70,12 @@ export function New () {
     });
 
     alert("Nota criada com sucesso!");
-    navigate("/");
+    navigate(-1);
 
+  }
+
+  function handleBack () {
+    navigate(-1);
   }
 
   return (
@@ -82,7 +91,10 @@ export function New () {
 
             <h1>Criar Nota</h1>
 
-            <Link to="/">Voltar</Link>
+            <ButtonText 
+              title="Voltar"
+              onClick={handleBack}
+            />
 
           </header>
 

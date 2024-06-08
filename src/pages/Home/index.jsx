@@ -11,6 +11,8 @@ import { ButtonText } from '../../components/buttonText';
 import { useState, useEffect } from 'react';
 import { api } from '../../services/api';
 
+import { useNavigate } from 'react-router-dom';
+
 export function Home() {
 
   const [ notes, setNotes ] = useState([]);
@@ -18,7 +20,7 @@ export function Home() {
   const [tagsSelected, setTagsSelected] = useState([]);
   const [ search, setSearch ] = useState("");
 
-
+  const navigate = useNavigate();
 
   function handleTagsSelected(tagName) {
     /* Função que altera a cor dos buttons que servirão como filtros para as tags.
@@ -38,6 +40,12 @@ export function Home() {
     }
 
   }
+
+  function handleDetails( id ) {
+    //Função que redireciona para a página de detalhes da nota.
+    navigate(`/details/${id}`);
+  }
+
   //useEffect que altera o nome dos filtros.
   useEffect(() => {
     //Função assíncrona que busca as tags no banco de dados.
@@ -49,6 +57,7 @@ export function Home() {
     fetchTags();
 
   }, []);
+
   //useEffect que busca as notas de acordo com o filtro selecionado e/ou com o titulo pesquisado.
   useEffect (() => {
 
@@ -110,6 +119,7 @@ export function Home() {
                 <Note 
                   key={String(note.id)}
                   data={note}
+                  onClick={() => handleDetails(note.id)}
                 />
               )
             )
