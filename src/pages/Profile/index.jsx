@@ -31,14 +31,16 @@ export function Profile () {
 
   async function handleUpdateProfile () {
 
-    const user = {
+    const updated = {
       name,
       email,
       password : newPassword,
       old_password : oldPassword
     }
 
-    await updateProfile({user, avatarFile});
+    const userUpDated = Object.assign(user, updated);//Permite que as infromações que não foram alteradas se mantenham.
+
+    await updateProfile({user : userUpDated, avatarFile});
   
   }
 
